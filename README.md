@@ -27,7 +27,7 @@ You choose which parts to show. See [Configuration](#configuration).
 
 - A server that reports prefill progress:
   - llama.cpp: works out of the box. pi-prefill sends `return_progress: true` for the built-in `llama.cpp` provider.
-  - TabbyAPI with the ExLlamaV3 backend: supported out of the box. Add your TabbyAPI provider id to `returnProgressProviders`. TabbyAPI then sends one `prompt_progress` chunk per prefill chunk.
+  - TabbyAPI with the ExLlamaV3 backend: supported out of the box. Add your TabbyAPI provider id to `providers`. TabbyAPI then sends one `prompt_progress` chunk per prefill chunk.
 - The model must use `api: "openai-completions"`. That is the API that defines `prompt_progress`.
 
 If the server sends no progress data, pi-prefill shows nothing. It does not guess.
@@ -47,14 +47,14 @@ Add a `piPrefill` key to `~/.pi/agent/settings.json`. It controls which parts th
 {
   "piPrefill": {
     "views": ["label", "bar", "percent", "tokens", "tps", "eta"],
-    "returnProgressProviders": ["llama.cpp"]
+    "providers": ["llama.cpp"]
   }
 }
 ```
 
 Valid view names: `label`, `bar`, `percent`, `tokens`, `tps`, `eta`. Default when unset: `["label", "bar", "percent", "tokens", "eta"]`.
 
-`returnProgressProviders` lists provider ids that receive `return_progress: true`. Default: `["llama.cpp"]`. Add your TabbyAPI or compatible-endpoint provider id to enable it there. Set it to `[]` to never modify a request. See [Enabling progress](#enabling-progress).
+`providers` lists provider ids that receive `return_progress: true`. Default: `["llama.cpp"]`. Add your TabbyAPI or compatible-endpoint provider id to enable it there. Set it to `[]` to never modify a request. See [Enabling progress](#enabling-progress).
 
 pi reads this file on `session_start`. Restart pi after you change it.
 
@@ -74,7 +74,7 @@ The response decides. A cloud request, a proxy, or a server without progress sup
 llama.cpp and TabbyAPI emit progress only when the request asks for it. `return_progress` defaults to `false` on both. pi-prefill adds the flag when both conditions hold:
 
 - the model `api` is `openai-completions`;
-- the model `provider` is listed in `returnProgressProviders`.
+- the model `provider` is listed in `providers`.
 
 This is a protocol and provider check, not a host check. It also keeps strict gateways safe. Fireworks and Azure OpenAI reject unknown body fields with `400 Extra inputs are not permitted`.
 

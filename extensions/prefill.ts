@@ -16,17 +16,17 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
  *   - A chunk without it shows nothing. Cloud providers stay untouched.
  *   - llama.cpp and TabbyAPI emit progress only when the request asks for it.
  *     Pi adds `return_progress: true` for `openai-completions` models whose
- *     provider id is listed in `returnProgressProviders`. Default: `llama.cpp`.
+ *     provider id is listed in `providers`. Default: `llama.cpp`.
  *
  * Config (settings.json, key "piPrefill"):
  *   {
  *     "piPrefill": {
  *       "views": ["label", "bar", "percent", "tokens", "eta"],
- *       "returnProgressProviders": ["llama.cpp"]
+ *       "providers": ["llama.cpp"]
  *     }
  *   }
  *
- * Set `returnProgressProviders` to [] to never touch a request body. The bar
+ * Set `providers` to [] to never touch a request body. The bar
  * then appears only for a server that sends progress unprompted.
  *
  * Debug: set PI_PREFILL_DEBUG=1 to log to /tmp/pi-prefill-debug.log.
@@ -105,7 +105,7 @@ function loadConfig(): void {
       );
       if (picked.length > 0) views = picked;
     }
-    const p = cfg?.piPrefill?.returnProgressProviders;
+    const p = cfg?.piPrefill?.providers;
     if (Array.isArray(p)) {
       // An empty list is a valid choice: never inject the flag.
       progressProviders = new Set(
