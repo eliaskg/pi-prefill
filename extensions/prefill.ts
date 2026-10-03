@@ -18,9 +18,9 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
  *     Pi adds `return_progress: true` for `openai-completions` models whose
  *     provider id is listed in `providers`. Default: `llama.cpp`.
  *
- * Config (settings.json, key "piPrefill"):
+ * Config (settings.json, key "prefill"):
  *   {
- *     "piPrefill": {
+ *     "prefill": {
  *       "views": ["label", "bar", "percent", "tokens", "eta"],
  *       "providers": ["llama.cpp"]
  *     }
@@ -97,7 +97,7 @@ function loadConfig(): void {
   try {
     const raw = readFileSync(join(getAgentDir(), "settings.json"), "utf8");
     const cfg = JSON.parse(raw);
-    const v = cfg?.piPrefill?.views;
+    const v = cfg?.prefill?.views;
     if (Array.isArray(v)) {
       const picked = v.filter(
         (x: unknown): x is View =>
@@ -105,7 +105,7 @@ function loadConfig(): void {
       );
       if (picked.length > 0) views = picked;
     }
-    const p = cfg?.piPrefill?.providers;
+    const p = cfg?.prefill?.providers;
     if (Array.isArray(p)) {
       // An empty list is a valid choice: never inject the flag.
       progressProviders = new Set(

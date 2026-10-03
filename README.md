@@ -43,11 +43,11 @@ pi install npm:pi-prefill
 
 ## Configuration
 
-Add a `piPrefill` key to `~/.pi/agent/settings.json`. It controls which parts the bar shows, in what order, and which providers are asked for progress.
+Add a `prefill` key to `~/.pi/agent/settings.json`. It controls which parts the bar shows, in what order, and which providers are asked for progress.
 
 ```json
 {
-  "piPrefill": {
+  "prefill": {
     "views": ["label", "bar", "percent", "tokens", "tps", "eta"],
     "providers": ["llama.cpp"]
   }
@@ -105,7 +105,7 @@ The log goes to `/tmp/pi-prefill-debug.log`. Set `PI_PREFILL_DEBUG_LOG` to chang
 
 ## How it works
 
-1. On `session_start`, pi-prefill reads `piPrefill` from `~/.pi/agent/settings.json`.
+1. On `session_start`, pi-prefill reads `prefill` from `~/.pi/agent/settings.json`.
 2. On `before_provider_request`, it adds `return_progress: true` when the model `api` and `provider` both match. Every other payload stays unchanged.
 3. On `provider_stream_event`, it reads the top-level `prompt_progress` field. If the field is absent, it does nothing.
 4. It renders the bar with `setWorkingMessage`. Progress counts uncached tokens only. The rate comes from the delta between consecutive chunks.
