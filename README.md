@@ -23,14 +23,16 @@ The bar tracks non-cached work only. Cached prompt tokens do not count as progre
 
 You choose which parts to show. See [Configuration](#configuration).
 
-## Requirements
+## Supported Engines
 
-- A server that reports prefill progress:
-  - llama.cpp: works out of the box. pi-prefill sends `return_progress: true` for the built-in `llama.cpp` provider.
-  - TabbyAPI with the ExLlamaV3 backend: supported out of the box. Add your TabbyAPI provider id to `providers`. TabbyAPI then sends one `prompt_progress` chunk per prefill chunk.
-- The model must use `api: "openai-completions"`. That is the API that defines `prompt_progress`.
+| Engine | Backend | Setup |
+|---|---|---|
+| **llama.cpp** | any build with router support | none. `llama.cpp` is in `providers` by default. |
+| **TabbyAPI** | ExLlamaV3 | add your provider id to `providers`. |
 
-If the server sends no progress data, pi-prefill shows nothing. It does not guess.
+All engines need `api: "openai-completions"` on the model. That is the API that defines `prompt_progress`.
+
+pi-prefill sends `return_progress: true` for listed providers only. All engines default that flag to `false`. An unlisted provider gets no progress data and shows no bar. The same holds for a server without support, such as vLLM. pi-prefill never guesses.
 
 ## Install
 
