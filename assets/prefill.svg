@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="pi-prefill loading line: prefill progress bar climbing to 100 percent">
+  <title>pi-prefill animated loading line</title>
+  <desc>pi loading spinner, a 10 cell prefill progress bar that steps 0, 24, then by 10 percent to 100, the percent readout, and the "gen in ~Ns" estimate counting down from 10 seconds to "gen now".</desc>
+  <rect width="1920" height="1080" fill="#23273b"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="90">
+    <text x="231" y="578" fill="#b2b9da">[</text>
+    <text x="825" y="578" fill="#b2b9da">]</text>
+    <rect x="285" y="482" width="540" height="117" fill="#353745"/>
+    <rect x="285" y="482" width="0" height="117" fill="#b4bd68">
+      <animate attributeName="width" calcMode="discrete" values="0;108;162;216;270;324;378;432;486;540" keyTimes="0;0.125;0.208333;0.291667;0.375;0.458333;0.541667;0.625;0.708333;0.791667" dur="12s" repeatCount="indefinite"/>
+    </rect>
+    <!-- percent -->
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">0%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="1;0" keyTimes="0;0.125"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">24%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.125;0.208333"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">34%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.208333;0.291667"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">44%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.291667;0.375"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">54%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.375;0.458333"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">64%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.458333;0.541667"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">74%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.541667;0.625"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">84%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.625;0.708333"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">94%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.708333;0.791667"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1149" y="578" fill="#d4d4d4" text-anchor="end" opacity="0">100%
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1" keyTimes="0;0.791667"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <!-- eta -->
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen in ~10s
+      <animate attributeName="opacity" calcMode="discrete"
+        values="1;0" keyTimes="0;0.125"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen in ~9s
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.125;0.208333"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen in ~8s
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.208333;0.291667"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen in ~7s
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.291667;0.375"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen in ~6s
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.375;0.458333"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen in ~5s
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.458333;0.541667"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen in ~4s
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.541667;0.625"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen in ~3s
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.625;0.708333"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen in ~2s
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1;0" keyTimes="0;0.708333;0.791667"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <text x="1203" y="578" fill="#8abeb7" opacity="0">gen now
+      <animate attributeName="opacity" calcMode="discrete"
+        values="0;1" keyTimes="0;0.791667"
+        dur="12s" repeatCount="indefinite"/>
+    </text>
+    <!-- pi loader: 10 braille frames, 80 ms each -->
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="133" cy="492" r="10"/>
+      <circle cx="133" cy="540.5" r="10"/>
+      <circle cx="167" cy="492" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="1;0" keyTimes="0;0.1" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="133" cy="492" r="10"/>
+      <circle cx="167" cy="492" r="10"/>
+      <circle cx="167" cy="540.5" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="0;1;0" keyTimes="0;0.1;0.2" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="133" cy="492" r="10"/>
+      <circle cx="167" cy="492" r="10"/>
+      <circle cx="167" cy="540.5" r="10"/>
+      <circle cx="167" cy="589" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="0;1;0" keyTimes="0;0.2;0.30000000000000004" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="167" cy="492" r="10"/>
+      <circle cx="167" cy="540.5" r="10"/>
+      <circle cx="167" cy="589" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="0;1;0" keyTimes="0;0.30000000000000004;0.4" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="133" cy="589" r="10"/>
+      <circle cx="167" cy="492" r="10"/>
+      <circle cx="167" cy="540.5" r="10"/>
+      <circle cx="167" cy="589" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="0;1;0" keyTimes="0;0.4;0.5" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="133" cy="589" r="10"/>
+      <circle cx="167" cy="540.5" r="10"/>
+      <circle cx="167" cy="589" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="0;1;0" keyTimes="0;0.5;0.6000000000000001" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="133" cy="540.5" r="10"/>
+      <circle cx="133" cy="589" r="10"/>
+      <circle cx="167" cy="589" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="0;1;0" keyTimes="0;0.6000000000000001;0.7000000000000001" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="133" cy="492" r="10"/>
+      <circle cx="133" cy="540.5" r="10"/>
+      <circle cx="133" cy="589" r="10"/>
+      <circle cx="167" cy="589" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="0;1;0" keyTimes="0;0.7000000000000001;0.8" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="133" cy="492" r="10"/>
+      <circle cx="133" cy="540.5" r="10"/>
+      <circle cx="133" cy="589" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="0;1;0" keyTimes="0;0.8;0.9" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+    <g fill="#8abeb7" opacity="0">
+      <circle cx="133" cy="492" r="10"/>
+      <circle cx="133" cy="540.5" r="10"/>
+      <circle cx="133" cy="589" r="10"/>
+      <circle cx="167" cy="492" r="10"/>
+      <animate attributeName="opacity" calcMode="discrete" values="0;1" keyTimes="0;0.9" dur="0.8s" repeatCount="indefinite"/>
+    </g>
+  </g>
+</svg>

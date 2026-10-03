@@ -2,12 +2,19 @@
   "name": "pi-prefill",
   "version": "0.1.0",
   "description": "Live prefill progress for pi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliaskg/pi-prefill.git"
+  },
+  "homepage": "https://github.com/eliaskg/pi-prefill#readme",
+  "bugs": "https://github.com/eliaskg/pi-prefill/issues",
   "keywords": ["pi-package", "pi", "pi-extension", "prefill", "llama.cpp", "tabbyapi", "exllama"],
   "license": "MIT",
   "type": "module",
   "files": ["extensions", "README.md", "LICENSE"],
   "pi": {
-    "extensions": ["./extensions/prefill.ts"]
+    "extensions": ["./extensions/prefill.ts"],
+    "image": "https://raw.githubusercontent.com/eliaskg/pi-prefill/main/assets/prefill.svg"
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
