@@ -71,15 +71,6 @@ pi parses each stream chunk and forwards it to extensions through `provider_stre
 
 The response decides. A cloud request, a proxy, or a server without progress support produces no output.
 
-### Enabling progress
-
-llama.cpp and TabbyAPI emit progress only when the request asks for it. `return_progress` defaults to `false` on both. pi-prefill adds the flag when both conditions hold:
-
-- the model `api` is `openai-completions`;
-- the model `provider` is listed in `providers`.
-
-This is a protocol and provider check, not a host check. It also keeps strict gateways safe. Fireworks and Azure OpenAI reject unknown body fields with `400 Extra inputs are not permitted`.
-
 ### Short prefills
 
 A bar that appears for 20 ms is noise. pi-prefill waits before it draws:
@@ -102,14 +93,6 @@ PI_PREFILL_DEBUG=1 pi
 ```
 
 The log goes to `/tmp/pi-prefill-debug.log`. Set `PI_PREFILL_DEBUG_LOG` to change the path.
-
-## How it works
-
-1. On `session_start`, pi-prefill reads `prefill` from `~/.pi/agent/settings.json`.
-2. On `before_provider_request`, it adds `return_progress: true` when the model `api` and `provider` both match. Every other payload stays unchanged.
-3. On `provider_stream_event`, it reads the top-level `prompt_progress` field. If the field is absent, it does nothing.
-4. It renders the bar with `setWorkingMessage`. Progress counts uncached tokens only. The rate comes from the delta between consecutive chunks.
-5. The first content, tool-call, reasoning, or finish token clears the line. pi-prefill clears only text it wrote itself, so pi keeps its own loading line elsewhere. There is no post-prefill readout.
 
 ## License
 
