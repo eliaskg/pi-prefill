@@ -4,9 +4,7 @@ A [pi](https://pi.dev) extension that shows a live prefill progress bar in the l
 
 A long prefill can take many seconds. Without feedback, the loading line looks idle. You cannot tell a slow prefill from a hang. pi-prefill fills that gap with a real progress bar.
 
-```
-prefill [██████░░░░░░] 52% gen in ~14s
-```
+<img src="assets/prefill.svg" width="350" alt="pi-prefill loading line: prefill progress bar climbing to 100 percent">
 
 ## What it shows
 
