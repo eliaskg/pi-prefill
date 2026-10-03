@@ -49,7 +49,7 @@ Add a `prefill` key to `~/.pi/agent/settings.json`. It controls which parts the 
 {
   "prefill": {
     "views": ["label", "bar", "percent", "tokens", "tps", "eta"],
-    "providers": ["llama.cpp"]
+    "providers": ["llama.cpp", "exllama"]
   }
 }
 ```
