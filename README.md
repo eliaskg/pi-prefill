@@ -1,6 +1,6 @@
 # pi-prefill
 
-A [pi](https://pi.dev) extension that shows a live prefill progress bar in the loading line. It works with any server that reports prefill progress, including llama.cpp and TabbyAPI / ExLlamaV3.
+A [pi](https://pi.dev) extension that shows a live prefill progress bar in the loading line. It works with any server that reports prefill progress.
 
 A long prefill can take many seconds. Without feedback, the loading line looks idle. You cannot tell a slow prefill from a hang. pi-prefill fills that gap with a real progress bar.
 
