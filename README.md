@@ -27,7 +27,7 @@ You choose which parts to show. See [Configuration](#configuration).
 
 - A server that reports prefill progress:
   - llama.cpp: works out of the box. pi-prefill sends `return_progress: true` for the built-in `llama.cpp` provider.
-  - TabbyAPI with ExLlamaV3: needs a server build that forwards `prompt_progress` to the SSE stream. ExLlamaV3 already emits per-chunk prefill progress; TabbyAPI must pass it through when `return_progress` is set.
+  - TabbyAPI with the ExLlamaV3 backend: supported out of the box. Add your TabbyAPI provider id to `returnProgressProviders`. TabbyAPI then sends one `prompt_progress` chunk per prefill chunk.
 - The model must use `api: "openai-completions"`. That is the API that defines `prompt_progress`.
 
 If the server sends no progress data, pi-prefill shows nothing. It does not guess.
