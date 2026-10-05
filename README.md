@@ -6,7 +6,7 @@ A [pi](https://pi.dev) extension that shows a live prefill progress bar in the l
 
 A long prefill can take many seconds. Without feedback, the loading line looks idle. You cannot tell a slow prefill from a hang. pi-prefill fills that gap with a real progress bar.
 
-<img src="assets/prefill.svg" width="350" alt="pi-prefill loading line: prefill progress bar climbing to 100 percent">
+<img src="https://github.com/eliaskg/pi-prefill/raw/main/assets/prefill.svg" width="350" alt="pi-prefill loading line: prefill progress bar climbing to 100 percent">
 
 ## What it shows
 
@@ -25,14 +25,16 @@ You choose which parts to show. See [Configuration](#configuration).
 
 ## Supported Engines
 
-| Engine | Backend | Setup |
+| Engine | Status | Setup |
 |---|---|---|
-| **llama.cpp** | any build with router support | none. `llama.cpp` is in `providers` by default. |
-| **TabbyAPI** | ExLlamaV3 | add your provider id to `providers`. |
+| **llama.cpp** | supported | none. `llama.cpp` is in `providers` by default. |
+| **TabbyAPI** | supported, ExLlamaV3 backend | add your provider id to `providers`. |
+| **Strata** | pending, [Strata#837](https://github.com/Niko1221/Strata/pull/837) | - |
+| **vLLM** | pending, [vllm#40371](https://github.com/vllm-project/vllm/pull/40371) | - |
 
 All engines need `api: "openai-completions"` on the model. That is the API that defines `prompt_progress`.
 
-pi-prefill sends `return_progress: true` for listed providers only. All engines default that flag to `false`. An unlisted provider gets no progress data and shows no bar. The same holds for a server without support, such as vLLM. pi-prefill never guesses.
+pi-prefill sends `return_progress: true` for listed providers only. All engines default that flag to `false`. An unlisted provider gets no progress data and shows no bar. pi-prefill never guesses.
 
 ## Install
 

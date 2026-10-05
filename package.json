@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/eliaskg/pi-prefill#readme",
   "bugs": "https://github.com/eliaskg/pi-prefill/issues",
-  "keywords": ["pi-package", "pi", "pi-extension", "prefill", "llama.cpp", "tabbyapi", "exllama"],
+  "keywords": ["pi-package", "pi", "pi-extension", "prefill", "llama.cpp", "tabbyapi", "exllama", "strata", "vllm"],
   "license": "MIT",
   "type": "module",
   "files": ["extensions", "README.md", "LICENSE"],
