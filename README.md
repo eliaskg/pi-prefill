@@ -1,5 +1,7 @@
 # pi-prefill
 
+[![npm version](https://img.shields.io/npm/v/pi-prefill.svg)](https://www.npmjs.com/package/pi-prefill) [![Download Stats](https://img.shields.io/npm/dm/pi-prefill.svg)](https://www.npmjs.com/package/pi-prefill) [![license](https://img.shields.io/npm/l/pi-prefill.svg)](LICENSE)
+
 A [pi](https://pi.dev) extension that shows a live prefill progress bar in the loading line. It works with any server that reports prefill progress.
 
 A long prefill can take many seconds. Without feedback, the loading line looks idle. You cannot tell a slow prefill from a hang. pi-prefill fills that gap with a real progress bar.
