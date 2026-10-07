@@ -29,6 +29,7 @@ You choose which parts to show. See [Configuration](#configuration).
 |---|---|---|
 | **[llama.cpp](https://github.com/ggml-org/llama.cpp)** | &#x2714; supported | none. `llama.cpp` is in `providers` by default |
 | **[ExLlamaV3](https://github.com/turboderp-org/exllamav3)** | &#x2714; supported via TabbyAPI | add your provider id to `providers` |
+| **[Unsloth](https://github.com/unslothai/unsloth)** | &#x2714; supported | add your provider id to `providers` |
 | **[Strata](https://github.com/Niko1221/Strata)** | &#x2714; supported | add your provider id to `providers` |
 | **[vLLM](https://github.com/vllm-project/vllm)** | pending, [vllm#40371](https://github.com/vllm-project/vllm/pull/40371) | - |
 
