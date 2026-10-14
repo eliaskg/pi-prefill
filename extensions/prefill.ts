@@ -22,7 +22,8 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
  *   {
  *     "prefill": {
  *       "views": ["label", "bar", "percent", "tokens", "eta"],
- *       "providers": ["llama.cpp"]
+ *       "providers": ["llama.cpp"],
+ *       "significantTokens": 1024
  *     }
  *   }
  *
@@ -39,8 +40,10 @@ const OPENAI_COMPLETIONS_API = "openai-completions";
 const DEFAULT_PROGRESS_PROVIDERS = ["llama.cpp"];
 
 // Significance thresholds. They stop a bar flash on a short prefill.
-const SIGNIFICANT_TOKENS = 1024;
+// `significantTokens` is overridable in settings under prefill.significantTokens.
+const DEFAULT_SIGNIFICANT_TOKENS = 1024;
 const SIGNIFICANT_MS = 300;
+let significantTokens = DEFAULT_SIGNIFICANT_TOKENS;
 
 // Display.
 const BAR_WIDTH = 10;
@@ -115,6 +118,11 @@ function loadConfig(): void {
           .filter(Boolean),
       );
     }
+    const s = cfg?.prefill?.significantTokens;
+    if (typeof s === "number" && Number.isInteger(s) && s >= 0) {
+      // 0 is a valid choice: it disables the token gate. The time gate stays.
+      significantTokens = s;
+    }
   } catch {
     // keep defaults
   }
@@ -173,7 +181,7 @@ function onProgress(pp: Progress): void {
   if (!state.assessed) {
     state.assessed = true;
     state.firstTs = Date.now();
-    if (uncachedTotal > SIGNIFICANT_TOKENS) state.tracking = true;
+    if (uncachedTotal > significantTokens) state.tracking = true;
   } else if (!state.tracking && Date.now() - state.firstTs > SIGNIFICANT_MS) {
     state.tracking = true;
   }
@@ -289,7 +297,7 @@ export default function (pi: ExtensionAPI): void {
     captureCtx(ctx);
     loadConfig();
     dbg(
-      `start views=${views.join(",")} providers=${[...progressProviders].join(",") || "(none)"}`,
+      `start views=${views.join(",")} providers=${[...progressProviders].join(",") || "(none)"} significantTokens=${significantTokens}`,
     );
   });
 

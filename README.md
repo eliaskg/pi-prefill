@@ -53,7 +53,8 @@ Add a `prefill` key to `~/.pi/agent/settings.json`. It controls which parts the 
 {
   "prefill": {
     "views": ["label", "bar", "percent", "tokens", "tps", "eta"],
-    "providers": ["llama.cpp", "exllama"]
+    "providers": ["llama.cpp", "exllama"],
+    "significantTokens": 1024
   }
 }
 ```
@@ -61,6 +62,8 @@ Add a `prefill` key to `~/.pi/agent/settings.json`. It controls which parts the 
 Valid view names: `label`, `bar`, `percent`, `tokens`, `tps`, `eta`. Default when unset: `["label", "bar", "percent", "tokens", "eta"]`.
 
 `providers` lists provider ids that receive `return_progress: true`. Default: `["llama.cpp"]`. Add your TabbyAPI or compatible-endpoint provider id to enable it there. Set it to `[]` to never modify a request. See [Enabling progress](#enabling-progress).
+
+`significantTokens` sets the token cutoff from [Short prefills](#short-prefills). Default: `1024`. A whole number of 0 or more is valid. `0` disables the token gate, so the time gate alone decides.
 
 pi reads this file on `session_start`. Restart pi after you change it.
 
@@ -79,7 +82,7 @@ The response decides. A cloud request, a proxy, or a server without progress sup
 
 A bar that appears for 20 ms is noise. pi-prefill waits before it draws:
 
-- uncached total above 1024 tokens: draw at once;
+- uncached total above `significantTokens` (default 1024) tokens: draw at once;
 - otherwise: draw only if prefill runs longer than 300 ms.
 
 Cached tokens never count as progress.
