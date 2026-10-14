@@ -27,13 +27,13 @@ You choose which parts to show. See [Configuration](#configuration).
 
 | Engine | Status | Setup |
 |---|---|---|
-| **[llama.cpp](https://github.com/ggml-org/llama.cpp)** | &#x2714; supported | none. `llama.cpp` is in `providers` by default |
-| **[oMLX](https://github.com/jundot/omlx)** | &#x2714; supported from [v0.7.1.dev1](https://github.com/jundot/omlx/releases/tag/v0.7.1.dev1) | add your provider id to `providers` |
-| **[ExLlamaV3](https://github.com/turboderp-org/exllamav3)** | &#x2714; supported via TabbyAPI | add your provider id to `providers` |
-| **[Unsloth](https://github.com/unslothai/unsloth)** | &#x2714; supported | add your provider id to `providers` |
-| **[Strata](https://github.com/Niko1221/Strata)** | &#x2714; supported | add your provider id to `providers` |
-| **[Project Maya](github.com/mw00/project-maya)** | &#x2714; supported | add your provider id to `providers` |
-| **[vLLM](https://github.com/vllm-project/vllm)** | pending, [vllm#40371](https://github.com/vllm-project/vllm/pull/40371) | - |
+| **[llama.cpp](https://github.com/ggml-org/llama.cpp)** | 🟢 supported | none. `llama.cpp` is in `providers` by default |
+| **[oMLX](https://github.com/jundot/omlx)** | 🟢 supported from [v0.7.1.dev1](https://github.com/jundot/omlx/releases/tag/v0.7.1.dev1) | add your provider id to `providers` |
+| **[ExLlamaV3](https://github.com/turboderp-org/exllamav3)** | 🟢 supported via TabbyAPI | add your provider id to `providers` |
+| **[Unsloth](https://github.com/unslothai/unsloth)** | 🟢 supported | add your provider id to `providers` |
+| **[Strata](https://github.com/Niko1221/Strata)** | 🟢 supported | add your provider id to `providers` |
+| **[Project Maya](github.com/mw00/project-maya)** | 🟢 supported | add your provider id to `providers` |
+| **[vLLM](https://github.com/vllm-project/vllm)** | 🟠 pending PR [vllm#40371](https://github.com/vllm-project/vllm/pull/40371) | add your provider id to `providers` |
 
 All engines need `api: "openai-completions"` on the model. That is the API that defines `prompt_progress`.
 
