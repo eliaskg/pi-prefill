@@ -28,7 +28,7 @@ You choose which parts to show. See [Configuration](#configuration).
 | Engine | Status | Setup |
 |---|---|---|
 | **[llama.cpp](https://github.com/ggml-org/llama.cpp)** | 🟢 supported | none. `llama.cpp` is in `providers` by default |
-| **[oMLX](https://github.com/jundot/omlx)** | 🟢 supported from [v0.7.1.dev1](https://github.com/jundot/omlx/releases/tag/v0.7.1.dev1) | add your provider id to `providers` |
+| **[oMLX](https://github.com/jundot/omlx)** | 🟢 supported | add your provider id to `providers` |
 | **[ExLlamaV3](https://github.com/turboderp-org/exllamav3)** | 🟢 supported via TabbyAPI | add your provider id to `providers` |
 | **[Unsloth](https://github.com/unslothai/unsloth)** | 🟢 supported | add your provider id to `providers` |
 | **[Strata](https://github.com/Niko1221/Strata)** | 🟢 supported | add your provider id to `providers` |
