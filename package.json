@@ -21,6 +21,9 @@
   ],
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "test": "node --test test/pattern.test.ts"
+  },
   "files": [
     "extensions",
     "README.md",

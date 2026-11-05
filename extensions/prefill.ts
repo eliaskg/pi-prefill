@@ -2,6 +2,7 @@ import { appendFileSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { getAgentDir } from "@earendil-works/pi-coding-agent";
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
+import { globToRegExp, matchesAny } from "./pattern.ts";
 
 /**
  * pi-prefill
@@ -16,7 +17,9 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
  *   - A chunk without it shows nothing. Cloud providers stay untouched.
  *   - llama.cpp and TabbyAPI emit progress only when the request asks for it.
  *     Pi adds `return_progress: true` for `openai-completions` models whose
- *     provider id is listed in `providers`. Default: `llama.cpp`.
+ *     provider id matches a `providers` entry. An entry is a glob with "*"
+ *     as the only metacharacter, so dynamic ids like "local-<hash>" match
+ *     "local-*". Default: `llama.cpp`.
  *
  * Config (settings.json, key "prefill"):
  *   {
@@ -29,6 +32,8 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
  *
  * Set `providers` to [] to never touch a request body. The bar
  * then appears only for a server that sends progress unprompted.
+ * A wildcard entry also matches cloud providers on `openai-completions`.
+ * Strict endpoints reject unknown body params, so use wildcards with care.
  *
  * Debug: set PI_PREFILL_DEBUG=1 to log to /tmp/pi-prefill-debug.log.
  */
@@ -52,7 +57,8 @@ const ALL_VIEWS = ["label", "bar", "percent", "tokens", "tps", "eta"] as const;
 type View = (typeof ALL_VIEWS)[number];
 const DEFAULT_VIEWS: View[] = ["label", "bar", "percent", "tokens", "eta"];
 let views: View[] = DEFAULT_VIEWS;
-let progressProviders = new Set<string>(DEFAULT_PROGRESS_PROVIDERS);
+let providerPatterns = [...DEFAULT_PROGRESS_PROVIDERS];
+let progressProviders: RegExp[] = DEFAULT_PROGRESS_PROVIDERS.map(globToRegExp);
 
 interface State {
   assessed: boolean;
@@ -111,12 +117,12 @@ function loadConfig(): void {
     const p = cfg?.prefill?.providers;
     if (Array.isArray(p)) {
       // An empty list is a valid choice: never inject the flag.
-      progressProviders = new Set(
-        p
-          .filter((x: unknown): x is string => typeof x === "string")
-          .map((x) => x.trim().toLowerCase())
-          .filter(Boolean),
-      );
+      // Each entry is a glob; "*" is the only metacharacter.
+      providerPatterns = p
+        .filter((x: unknown): x is string => typeof x === "string")
+        .map((x) => x.trim())
+        .filter(Boolean);
+      progressProviders = providerPatterns.map(globToRegExp);
     }
     const s = cfg?.prefill?.significantTokens;
     if (typeof s === "number" && Number.isInteger(s) && s >= 0) {
@@ -289,7 +295,7 @@ function shouldRequestProgress(ctx: ExtensionContext): boolean {
   const provider = ctx.model?.provider;
   if (api !== OPENAI_COMPLETIONS_API) return false;
   if (typeof provider !== "string") return false;
-  return progressProviders.has(provider.toLowerCase());
+  return matchesAny(progressProviders, provider);
 }
 
 export default function (pi: ExtensionAPI): void {
@@ -297,7 +303,7 @@ export default function (pi: ExtensionAPI): void {
     captureCtx(ctx);
     loadConfig();
     dbg(
-      `start views=${views.join(",")} providers=${[...progressProviders].join(",") || "(none)"} significantTokens=${significantTokens}`,
+      `start views=${views.join(",")} providers=${providerPatterns.join(",") || "(none)"} significantTokens=${significantTokens}`,
     );
   });
 

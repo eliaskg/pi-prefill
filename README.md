@@ -64,7 +64,7 @@ Add a `prefill` key to `~/.pi/agent/settings.json`. It controls which parts the 
 
 Valid view names: `label`, `bar`, `percent`, `tokens`, `tps`, `eta`. Default when unset: `["label", "bar", "percent", "tokens", "eta"]`.
 
-`providers` lists provider ids that receive `return_progress: true`. Default: `["llama.cpp"]`. Add your TabbyAPI or compatible-endpoint provider id to enable it there. Set it to `[]` to never modify a request. See [Enabling progress](#enabling-progress).
+`providers` lists provider entries that receive `return_progress: true`. Default: `["llama.cpp"]`. Add your compatible endpoint provider id to enable it there. An entry can end in a `*` wildcard, which matches dynamic provider ids like `["local-*"]`.
 
 `significantTokens` sets the token cutoff from [Short prefills](#short-prefills). Default: `1024`. A whole number of 0 or more is valid. `0` disables the token gate, so the time gate alone decides.
 
