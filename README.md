@@ -35,6 +35,7 @@ You choose which parts to show. See [Configuration](#configuration).
 | **[Project Maya](github.com/mw00/project-maya)** | 🟢 supported | add your provider id to `providers` |
 | **[Splash](https://github.com/incoai/splash)** | 🟢 supported | add your provider id to `providers` |
 | **[vLLM](https://github.com/vllm-project/vllm)** | 🟠 pending PR [vllm#40371](https://github.com/vllm-project/vllm/pull/40371) | add your provider id to `providers` |
+| **[mlx-serve](https://github.com/ddalcu/mlx-serve)** | 🟠 pending PR [mlx-serve#1032](https://github.com/ddalcu/mlx-serve/pull/1032) | add your provider id to `providers` |
 
 All engines need `api: "openai-completions"` on the model. That is the API that defines `prompt_progress`.
 
