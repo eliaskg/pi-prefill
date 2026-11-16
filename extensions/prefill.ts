@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { getAgentDir } from "@earendil-works/pi-coding-agent";
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { globToRegExp, matchesAny } from "./pattern.ts";
+import { freshRate, sampleRate, type RateState } from "./rate.ts";
 
 /**
  * pi-prefill
@@ -66,8 +67,7 @@ interface State {
   rendered: boolean;
   genStarted: boolean;
   firstTs: number;
-  prevProcessed: number;
-  prevTimeMs: number;
+  rate: RateState;
 }
 
 const freshState = (): State => ({
@@ -76,8 +76,7 @@ const freshState = (): State => ({
   rendered: false,
   genStarted: false,
   firstTs: 0,
-  prevProcessed: 0,
-  prevTimeMs: 0,
+  rate: freshRate(),
 });
 
 let ui: {
@@ -196,13 +195,11 @@ function onProgress(pp: Progress): void {
   );
   if (!state.tracking) return;
   // Instantaneous rate from the delta between consecutive chunks. More accurate
-  // than a cumulative rate when prefill speed drops as context grows.
-  let rate: number | null = null;
-  const dProcessed = pp.processed - state.prevProcessed;
-  const dTimeMs = pp.time_ms - state.prevTimeMs;
-  if (dProcessed > 0 && dTimeMs > 0) rate = dProcessed / (dTimeMs / 1000);
-  state.prevProcessed = pp.processed;
-  state.prevTimeMs = pp.time_ms;
+  // than a cumulative rate when prefill speed drops as context grows. A chunk
+  // that repeats the last progress value keeps the last rate: maya sends such
+  // heartbeats, and a null rate would drop the ETA from the line.
+  const computed = Math.max(0, pp.processed - pp.cache);
+  const rate = sampleRate(state.rate, { computed, timeMs: pp.time_ms });
   updateBar(pp, rate);
 }
 

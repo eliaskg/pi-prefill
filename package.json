@@ -22,7 +22,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "test": "node --test test/pattern.test.ts"
+    "test": "node --test \"test/*.test.ts\""
   },
   "files": [
     "extensions",
