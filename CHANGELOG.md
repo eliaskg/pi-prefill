@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.2] - 2026-11-16
+
+### Fixed
+
+- **ETA flicker on repeated progress chunks**: Some servers repeat the last `prompt_progress` value on heartbeat chunks. Maya does this while the engine is quiet. A zero token delta cleared the rate, so the `eta` and `tps` views dropped out of the line. The extension now keeps the last rate through such chunks. The rate uses uncached tokens only.
+
 ## [0.2.0] - 2026-11-05
 
 ### New Features
