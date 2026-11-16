@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.3] - 2026-11-16
+
+### Changed
+
+- **mlx-serve**: Updated the PR note to the new pull request. 
+
 ## [0.2.2] - 2026-11-16
 
 ### Fixed
